@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour
 {
-    public float movementSpeed = 2f;
+    public float movementSpeed = 6f;
     float FB_Move; //forward and backwords movement
     float LR_Move; //Left right movement
 
@@ -33,7 +33,7 @@ public class FPSController : MonoBehaviour
 
         Vector3 movement = new Vector3(LR_Move, 0, FB_Move);
         transform.Rotate(0, rotationX, 0);
-        playerView.transform.Rotate(-rotationy, 0, 0);
+        playerView.transform.Rotate(-rotationy, 0, 0); //makes the looking control not inverted. 
         movement = transform.rotation * movement;
 
         player.Move(movement * Time.deltaTime);
