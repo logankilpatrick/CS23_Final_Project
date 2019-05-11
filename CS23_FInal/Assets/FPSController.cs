@@ -33,8 +33,34 @@ public class FPSController : MonoBehaviour
     void setLivesTest()
     {
         LivesText.text = "Jet Pack Energy: " + jetPackEnergy.ToString();
-
     }
+    // void OnCollisionEnter (Collision col)
+    // {
+    //     jetPackEnergy = jetPackEnergy + 100;
+
+    //     if(col.gameObject.name == "JetPack Re-Fuel")
+    //     {
+    //         jetPackEnergy = jetPackEnergy + 100;
+    //         setLivesTest();
+    //     }
+    // }
+    private void OnTriggerEnter(Collider other)
+    {
+        if ((other.gameObject.name == "JetPack Re-Fuel")  && jetPackEnergy <= 1000)
+        {
+            jetPackEnergy = jetPackEnergy + 100;
+            setLivesTest();        
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 1000)
+        {
+            jetPackEnergy = jetPackEnergy + 100;
+            setLivesTest();        
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
