@@ -54,9 +54,19 @@ public class FPSController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 1000)
+        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 1000) //Level 1 refuel location
         {
             jetPackEnergy = jetPackEnergy + 100;
+            setLivesTest();        
+        }
+        else if ((other.gameObject.name == "JetPack Re-Fuel2") && jetPackEnergy <= 500) //Level 2 refuel location
+        {
+            jetPackEnergy = jetPackEnergy + 50;
+            setLivesTest();        
+        }
+        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 250) //Level 2 refuel location
+        {
+            jetPackEnergy = jetPackEnergy + 25;
             setLivesTest();        
         }
     }
