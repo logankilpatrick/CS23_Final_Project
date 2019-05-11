@@ -34,16 +34,8 @@ public class FPSController : MonoBehaviour
     {
         LivesText.text = "Jet Pack Energy: " + jetPackEnergy.ToString();
     }
-    // void OnCollisionEnter (Collision col)
-    // {
-    //     jetPackEnergy = jetPackEnergy + 100;
-
-    //     if(col.gameObject.name == "JetPack Re-Fuel")
-    //     {
-    //         jetPackEnergy = jetPackEnergy + 100;
-    //         setLivesTest();
-    //     }
-    // }
+    public float timeLeft = 120.0f;
+    public Text timeText; 
     private void OnTriggerEnter(Collider other)
     {
         if ((other.gameObject.name == "JetPack Re-Fuel")  && jetPackEnergy <= 1000)
@@ -54,17 +46,17 @@ public class FPSController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 1000) //Level 1 refuel location
+        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 300) //Level 1 refuel location
         {
             jetPackEnergy = jetPackEnergy + 100;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel2") && jetPackEnergy <= 500) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel2") && jetPackEnergy <= 200) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 50;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 250) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 150) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 25;
             setLivesTest();        
@@ -78,10 +70,6 @@ public class FPSController : MonoBehaviour
         rotationX = Input.GetAxis("Mouse X") * viewSens;
         rotationy = Input.GetAxis("Mouse Y") * viewSens;
 
-        // if (player.isGrounded)
-        // {
-
-
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection *= movementSpeed;
 
@@ -94,16 +82,24 @@ public class FPSController : MonoBehaviour
             moveDirection.y = jumpSpeed;
             jetPackEnergy = jetPackEnergy - 1;
         }
-        // }
+       
 
-        if (player.transform.position.y < -10)
-        {
-            //numberOfLivesLeft = numberOfLivesLeft - 1; //No lives...
+        if (player.transform.position.y < -100) //This value starts couting when the player leaves a ground.  So if they fall for more than
+        {                                       // 100 unit of measure, the game will end since they passed out. 
 
+            //numberOfLivesLeft = numberOfLivesLeft - 1; //No lives... You've got one shot. 
             //SceneManager.LoadScene("Game Over");//This needs to go last/ 
             SceneManager.LoadScene("Game Over");
             //player.transform.position = new Vector3(7,4,6);
             //want the player back to starting point. 
+        }
+
+        timeLeft -= Time.deltaTime;
+        timeText.text = "Time Remaining: " + (timeLeft).ToString("0");
+
+        if (timeLeft < 0)
+        {
+            SceneManager.LoadScene("Game Over");
         }
 
         
