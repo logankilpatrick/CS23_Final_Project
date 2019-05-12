@@ -56,7 +56,7 @@ public class FPSController : MonoBehaviour
             jetPackEnergy = jetPackEnergy + 50;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 350) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <=425) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 25;
             setLivesTest();        
@@ -64,6 +64,12 @@ public class FPSController : MonoBehaviour
         else if (other.gameObject.name == "YouWon")
         {
             SceneManager.LoadScene("You Won");
+        }
+        else if (other.gameObject.name == "Enemy(P 1)" || other.gameObject.name == "Enemy(P 4)")
+        {
+            jetPackEnergy = jetPackEnergy - 10;
+            //can have postive fuel if they are fuel helpers...
+            //...or negative fuel if they are enemies. 
         }
     }
 

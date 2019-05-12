@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public float targetDistance = 10;
-    public float visionDistance = 9;
-    public float attackDistance = 10;
-    public float enemyMovementSpeed = 5;
+    public float targetDistance = 20;
+    public float visionDistance = 20;
+    public float attackDistance = 15;
+    public float enemyMovementSpeed = 6;
     public float damping = 5;
     public Transform fpsTarget;
     Rigidbody rigidBodyHolder;
@@ -36,9 +36,9 @@ public class Enemy : MonoBehaviour
         //visionDistance makes sure that we are close! 
 
         
-        if (targetDistance > 500) 
+        if (targetDistance > 300) 
         { 
-            //Destroy object since we are probably in free fall. 
+            //Destroy object since we are probably in free fall or flying away on the y-axis. 
             Destroy(gameObject);
         }
 
