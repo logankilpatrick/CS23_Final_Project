@@ -29,6 +29,11 @@ public class Enemy : MonoBehaviour
             myRenderer.material.color = Color.blue;
             turnToPlayer();
         }
+        else
+        {
+            myRenderer.material.color = Color.yellow;
+
+        }
         if (targetDistance < attackDistance)
         {
             attack();

@@ -71,6 +71,12 @@ public class FPSController : MonoBehaviour
             //can have postive fuel if they are fuel helpers...
             //...or negative fuel if they are enemies. 
         }
+        else if (other.gameObject.name == "Friend(P 2)")
+        {
+            jetPackEnergy = jetPackEnergy + 25;
+            //can have postive fuel if they are fuel helpers...
+            //...or negative fuel if they are enemies. 
+        }
     }
 
     // Update is called once per frame
