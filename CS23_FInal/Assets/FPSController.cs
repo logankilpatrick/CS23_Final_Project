@@ -98,6 +98,11 @@ public class FPSController : MonoBehaviour
             moveDirection.y = jumpSpeed;
             jetPackEnergy = jetPackEnergy - 1;
         }
+        else
+        {
+            moveDirection.y -= gravity * Time.deltaTime * 20;
+
+        }
        
 
         if (player.transform.position.y < -100) //This value starts couting when the player leaves a ground.  So if they fall for more than
@@ -117,9 +122,6 @@ public class FPSController : MonoBehaviour
         {
             SceneManager.LoadScene("Game Over");
         }
-
-        
-        moveDirection.y -= gravity * Time.deltaTime * 7;
 
         // Move the controller
         player.Move(moveDirection * Time.deltaTime);

@@ -34,7 +34,8 @@ public class Enemy : MonoBehaviour
             myRenderer.material.color = Color.yellow;
 
         }
-        if (targetDistance < attackDistance)
+        
+        if (targetDistance <= attackDistance)
         {
             attack();
         }
