@@ -51,15 +51,19 @@ public class FPSController : MonoBehaviour
             jetPackEnergy = jetPackEnergy + 100;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel2") && jetPackEnergy <= 200) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel2") && jetPackEnergy <= 300) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 50;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 150) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 250) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 25;
             setLivesTest();        
+        }
+        else if (other.gameObject.name == "YouWon")
+        {
+            SceneManager.LoadScene("You Won");
         }
     }
 
