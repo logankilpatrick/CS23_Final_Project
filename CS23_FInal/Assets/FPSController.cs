@@ -25,6 +25,10 @@ public class FPSController : MonoBehaviour
     //public int numberOfLivesLeft = 3;
     public int jetPackEnergy = 100;
     public Text LivesText;
+
+    public float timeLeft = 120.0f;
+    public Text timeText; 
+
     void Start()
     {
         player = GetComponent<CharacterController> ();
@@ -34,19 +38,15 @@ public class FPSController : MonoBehaviour
     {
         LivesText.text = "Jet Pack Energy: " + jetPackEnergy.ToString();
     }
-    public float timeLeft = 120.0f;
-    public Text timeText; 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if ((other.gameObject.name == "JetPack Re-Fuel")  && jetPackEnergy <= 1000)
+        //Switch statement switching on the name of the collider will work too. 
+        if ((other.gameObject.name == "JetPack Re-Fuel")  && jetPackEnergy <= 2000)
         {
             jetPackEnergy = jetPackEnergy + 100;
             setLivesTest();        
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 300) //Level 1 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel") && jetPackEnergy <= 300) //Level 1 refuel location
         {
             jetPackEnergy = jetPackEnergy + 100;
             setLivesTest();        
@@ -56,7 +56,7 @@ public class FPSController : MonoBehaviour
             jetPackEnergy = jetPackEnergy + 50;
             setLivesTest();        
         }
-        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 250) //Level 2 refuel location
+        else if ((other.gameObject.name == "JetPack Re-Fuel3") && jetPackEnergy <= 350) //Level 2 refuel location
         {
             jetPackEnergy = jetPackEnergy + 25;
             setLivesTest();        
@@ -107,7 +107,7 @@ public class FPSController : MonoBehaviour
         }
 
         
-        moveDirection.y -= (gravity * 7) * Time.deltaTime;
+        moveDirection.y -= gravity * Time.deltaTime * 7;
 
         // Move the controller
         player.Move(moveDirection * Time.deltaTime);
